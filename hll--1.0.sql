@@ -317,6 +317,13 @@ CREATE FUNCTION hll_hash_bigint(bigint, integer default 0)
      AS 'MODULE_PATHNAME', 'hll_hash_8byte'
      LANGUAGE C STRICT IMMUTABLE;
 
+-- Hash a uuid.
+--
+CREATE FUNCTION hll_hash_uuid(uuid, integer default 0)
+     RETURNS hll_hashval
+     AS 'MODULE_PATHNAME', 'hll_hash_uuid'
+     LANGUAGE C STRICT IMMUTABLE;
+
 -- Hash a byte array.
 --
 CREATE FUNCTION hll_hash_bytea(bytea, integer default 0)

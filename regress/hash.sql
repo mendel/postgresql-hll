@@ -27,6 +27,11 @@ SELECT hll_hash_bigint(0);
 SELECT hll_hash_bigint(100);
 SELECT hll_hash_bigint(-100);
 
+-- ---------------- uuid
+
+SELECT hll_hash_uuid('7ab80674-1612-4a64-9418-cbe8c9f3a28d');
+SELECT hll_hash_uuid('f1a371c2-9421-11e3-a0cd-f698b415dafa');
+
 -- ---------------- bytea
 
 -- Check some small values.

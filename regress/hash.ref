@@ -77,6 +77,19 @@ SELECT hll_hash_bigint(-100);
  -886862857196634693
 (1 row)
 
+-- ---------------- uuid
+SELECT hll_hash_uuid('7ab80674-1612-4a64-9418-cbe8c9f3a28d');
+   hll_hash_uuid   
+---------------------
+ 6987733829478686688
+(1 row)
+
+SELECT hll_hash_uuid('f1a371c2-9421-11e3-a0cd-f698b415dafa');
+   hll_hash_uuid
+---------------------
+ -6997552115430981711
+(1 row)
+
 -- ---------------- bytea
 -- Check some small values.
 SELECT hll_hash_bytea(E'\\x');

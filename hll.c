@@ -2579,6 +2579,27 @@ hll_hash_8byte(PG_FUNCTION_ARGS)
     PG_RETURN_INT64(out[0]);
 }
 
+// Hash an uuid object.
+//
+PG_FUNCTION_INFO_V1(hll_hash_uuid);
+Datum		hll_hash_uuid(PG_FUNCTION_ARGS);
+Datum
+hll_hash_uuid(PG_FUNCTION_ARGS)
+{
+    pg_uuid_t *uuid = PG_GETARG_UUID_P(0);
+    int32 seed = PG_GETARG_INT32(1);
+    uint64 out[2];
+
+    if (seed < 0)
+        ereport(WARNING,
+                (errcode(ERRCODE_WARNING),
+                 errmsg("negative seed values not compatible")));
+
+    MurmurHash3_x64_128(&uuid->data, UUID_LEN, seed, out);
+
+    PG_RETURN_INT64(out[0]);
+}
+
 // Hash a varlena object.
 //
 PG_FUNCTION_INFO_V1(hll_hash_varlena);
